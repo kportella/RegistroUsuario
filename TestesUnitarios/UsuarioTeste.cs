@@ -38,9 +38,8 @@ public class UsuarioTeste
         resultado.Senha.Should().Be("123456");
         resultado.Email.Should().Be("email@email.com");
         resultado.DataNascimento.Should().Be(dataNascimento);
-        resultado.Departamento.Should().Be("1");
         resultado.Certificados.Should().Contain(certificados);
-        resultado.Cargo.Should().Be("1");
-        resultado.Departamento.Should().Be("1");
+        resultado.Cargo.Should().Be(cargo);
+        resultado.Departamento.Should().Be(departamento);
     }
 }
