@@ -9,7 +9,7 @@ public class UsuarioServico : IUsuario
         if (!ValidarPreenchimento(usuario))
             return "Um ou mais campos obrigatórios não preenchidos";
 
-        if (usuario.DataNascimento > DateTime.Now) return "Data de nascimento inválida";
+        if (!ValidarDataNascimento(usuario.DataNascimento)) return "Data de nascimento inválida.";
 
         if (Utils.Instance.Usuarios.Find(x => x.Matricula == usuario.Matricula) != null)
             return "Matricula já existente.";
@@ -26,6 +26,11 @@ public class UsuarioServico : IUsuario
         if (usuario.Matricula == 0) return false;
 
         return true;
+    }
+
+    private static bool ValidarDataNascimento(DateTime dataNascimento)
+    {
+        return dataNascimento <= DateTime.Now;
     }
 
     public string CongelarUsuario(long matricula)
