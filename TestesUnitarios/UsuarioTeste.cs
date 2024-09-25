@@ -119,4 +119,41 @@ public class UsuarioTeste
         Utils.Instance.Usuarios.Find(x => x.Matricula == usuario.Matricula)!.Congelado.Should().BeTrue();
         retorno.Should().Be("Usuário congelado com sucesso!");
     }
+
+    [Fact]
+    public void RegistrarUsuario_MatriculaJaCadastrado_NaoDeveSalvar()
+    {
+        // Arrange
+        
+        var dataNascimento = DateTime.Now;
+        var certificados = new List<Certificado>()
+        {
+            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            Certificado.Criar("1", 123456, DateTime.Now, 10),
+        };
+
+        var cargo = Cargo.Criar("1", "Nome cargo");
+        var departamento = Departamento.Criar("1", "Nome departamento");
+
+        var usuario = new Usuario("Guilherme"
+            , 123456
+            , "123456"
+            , "email@email.com"
+            , dataNascimento
+            , certificados
+            , cargo
+            , departamento
+            , false);
+        
+        var usuarioServico = new UsuarioServico();
+        usuarioServico.Salvar(usuario);
+        
+        // Act
+        
+        var resultado = usuarioServico.Salvar(usuario);
+        
+        // Assert
+
+        resultado.Should().Be("Usuário já existente.");
+    }
 }
