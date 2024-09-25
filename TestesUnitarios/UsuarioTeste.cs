@@ -1,4 +1,5 @@
 using FluentAssertions;
+using RegistroUsuario;
 using RegistroUsuario.Dominio;
 
 namespace TestesUnitarios;
@@ -19,27 +20,23 @@ public class UsuarioTeste
 
         var cargo = Cargo.Criar("1", "Nome cargo");
         var departamento = Departamento.Criar("1", "Nome departamento");
-        
+
+        var usuario = new Usuario("Kauê"
+            , 123456
+            , "123456"
+            , "email@email.com"
+            , dataNascimento
+            , certificados
+            , cargo
+            , departamento);
+
         // Act
 
-        var resultado = Usuario.Criar("Kauê"
-        , 123456
-        , "123456"
-        , "email@email.com"
-        , dataNascimento
-        , certificados
-        , cargo
-        , departamento);
+        var resultado = Usuario.Salvar(usuario);
 
         // Assert
-        
-        resultado.Nome.Should().Be("Kauê");
-        resultado.Matricula.Should().Be(123456);
-        resultado.Senha.Should().Be("123456");
-        resultado.Email.Should().Be("email@email.com");
-        resultado.DataNascimento.Should().Be(dataNascimento);
-        resultado.Certificados.Should().Contain(certificados);
-        resultado.Cargo.Should().Be(cargo);
-        resultado.Departamento.Should().Be(departamento);
+
+        Utils.Instance.Usuarios.Exists(x => x.Matricula == usuario.Matricula).Should().BeTrue();
+        resultado.Should().Be("Cadastrado com sucesso!");
     }
 }

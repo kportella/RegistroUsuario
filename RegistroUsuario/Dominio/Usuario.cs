@@ -2,7 +2,7 @@ namespace RegistroUsuario.Dominio;
 
 public class Usuario
 {
-    private Usuario(string nome, long matricula, string senha, string email, DateTime dataNascimento, List<Certificado> certificados, Cargo cargo, Departamento departamento)
+    public Usuario(string nome, long matricula, string senha, string email, DateTime dataNascimento, List<Certificado> certificados, Cargo cargo, Departamento departamento)
     {
         Nome = nome;
         Matricula = matricula;
@@ -22,10 +22,10 @@ public class Usuario
     public List<Certificado> Certificados { get; }
     public Cargo Cargo { get; }
     public Departamento Departamento { get; }
-
-    public static Usuario Criar(string nome, long matricula, string senha, string email, DateTime dataNascimento, List<Certificado> certificados
-        , Cargo cargo, Departamento departamento)
+    
+    public static string Salvar(Usuario usuario)
     {
-        return new(nome, matricula, senha, email, dataNascimento, certificados, cargo, departamento);
+        Utils.Instance.Usuarios.Add(usuario);
+        return "Cadastrado com sucesso!";
     }
 }
