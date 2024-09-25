@@ -1,6 +1,7 @@
 using FluentAssertions;
 using RegistroUsuario;
 using RegistroUsuario.Dominio;
+using RegistroUsuario.RegrasNegocios;
 
 namespace TestesUnitarios;
 
@@ -32,7 +33,7 @@ public class UsuarioTeste
 
         // Act
 
-        var resultado = Usuario.Salvar(usuario);
+        var resultado = new UsuarioServico().Salvar(usuario);
 
         // Assert
 
@@ -71,7 +72,7 @@ public class UsuarioTeste
         
         // Act
         
-        var retorno = Usuario.Salvar(usuario);
+        var retorno = new UsuarioServico().Salvar(usuario);
         
         // Assert
         
