@@ -25,7 +25,15 @@ public class Usuario
     
     public static string Salvar(Usuario usuario)
     {
+        if (!ValidarPreenchimento(usuario))
+            return "Um ou mais campos obrigatórios não preenchidos";
+        
         Utils.Instance.Usuarios.Add(usuario);
         return "Cadastrado com sucesso!";
+    }
+
+    private static bool ValidarPreenchimento(Usuario usuario)
+    {
+        return true;
     }
 }
