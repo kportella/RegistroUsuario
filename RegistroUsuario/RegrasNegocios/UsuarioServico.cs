@@ -11,6 +11,9 @@ public class UsuarioServico : IUsuario
 
         if (!ValidarDataNascimento(usuario.DataNascimento)) return "Data de nascimento inválida.";
 
+        if (usuario.DataNascimento.Year - DateTime.Now.Year < 18)
+            return "Usuário deve ter pelo menos 18 anos de idade.";
+
         if (Utils.Instance.Usuarios.Find(x => x.Matricula == usuario.Matricula) != null)
             return "Matricula já existente.";
         
