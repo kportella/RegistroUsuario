@@ -24,5 +24,7 @@ public class Usuario
     public List<Certificado> Certificados { get; }
     public Cargo Cargo { get; }
     public Departamento Departamento { get; }
-    public bool Congelado { get; set; }
+    public bool Congelado { get; private set; }
+    
+    public void CongelarUsuario() => Congelado = true;
 }

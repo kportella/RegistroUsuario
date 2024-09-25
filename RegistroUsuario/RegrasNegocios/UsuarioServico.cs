@@ -33,8 +33,8 @@ public class UsuarioServico : IUsuario
         if (usuario is null) return "Usuário não encontrado.";
         
         Utils.Instance.Usuarios.Remove(usuario);
-        
-        usuario.Congelado = true;
+
+        usuario.CongelarUsuario();
         
         Utils.Instance.Usuarios.Add(usuario);
 
