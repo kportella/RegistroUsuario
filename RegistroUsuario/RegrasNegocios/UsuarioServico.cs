@@ -26,6 +26,8 @@ public class UsuarioServico : IUsuario
     public string CongelarUsuario(long matricula)
     {
         var usuario = Utils.Instance.Usuarios.Find(usuario => usuario.Matricula == matricula);
+
+        if (usuario is null) return "Usuário não encontrado.";
         
         Utils.Instance.Usuarios.Remove(usuario);
         
