@@ -7,6 +7,9 @@ namespace TestesUnitarios;
 
 public class UsuarioTeste
 {
+
+    public UsuarioTeste() => Utils.Instance.Usuarios.Clear();
+    
     [Fact]
     public void RegistrarUsuario_ComCamposObrigatoriosPreenchidos_DeveSalvar()
     {
@@ -190,5 +193,40 @@ public class UsuarioTeste
         
         Utils.Instance.Usuarios.Exists(x => x.Matricula == usuario.Matricula).Should().BeFalse();
         resultado.Should().Be("Data de nascimento inválida.");
+    }
+    
+    [Fact]
+    public void RegistrarUsuario_UsuarioMenorQue18Anos_NaoDeveSalvar()
+    {
+        // Arrange
+        
+        var dataNascimento = DateTime.Now.AddDays(-1);
+        var certificados = new List<Certificado>()
+        {
+            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            Certificado.Criar("1", 123456, DateTime.Now, 10),
+        };
+
+        var cargo = Cargo.Criar("1", "Nome cargo");
+        var departamento = Departamento.Criar("1", "Nome departamento");
+
+        var usuario = new Usuario("Guilherme"
+            , 123456
+            , "123456"
+            , "email@email.com"
+            , dataNascimento
+            , certificados
+            , cargo
+            , departamento
+            , false);
+        
+        // Act
+        
+        var resultado = new UsuarioServico().Salvar(usuario);
+        
+        // Assert
+        
+        Utils.Instance.Usuarios.Exists(x => x.Matricula == usuario.Matricula).Should().BeFalse();
+        resultado.Should().Be("Usuário deve ter pelo menos 18 anos de idade.");
     }
 }
