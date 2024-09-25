@@ -2,7 +2,8 @@ namespace RegistroUsuario.Dominio;
 
 public class Usuario
 {
-    public Usuario(string nome, long matricula, string senha, string email, DateTime dataNascimento, List<Certificado> certificados, Cargo cargo, Departamento departamento)
+    public Usuario(string nome, long matricula, string senha, string email, DateTime dataNascimento
+        , List<Certificado> certificados, Cargo cargo, Departamento departamento, bool congelado)
     {
         Nome = nome;
         Matricula = matricula;
@@ -12,6 +13,7 @@ public class Usuario
         Certificados = certificados;
         Cargo = cargo;
         Departamento = departamento;
+        Congelado = congelado;
     }
 
     public string Nome { get; }
@@ -22,4 +24,5 @@ public class Usuario
     public List<Certificado> Certificados { get; }
     public Cargo Cargo { get; }
     public Departamento Departamento { get; }
+    public bool Congelado { get; set; }
 }

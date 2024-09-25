@@ -23,4 +23,8 @@ public class UsuarioServico : IUsuario
         return true;
     }
 
+    public string CongelarUsuario(long matricula)
+    {
+        return "";
+    }
 }
