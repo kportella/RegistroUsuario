@@ -189,6 +189,6 @@ public class UsuarioTeste
         // Assert
         
         Utils.Instance.Usuarios.Exists(x => x.Matricula == usuario.Matricula).Should().BeFalse();
-        resultado.Should().Be("Data de nascimento inválida");
+        resultado.Should().Be("Data de nascimento inválida.");
     }
 }
