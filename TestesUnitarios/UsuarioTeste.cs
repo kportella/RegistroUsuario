@@ -154,6 +154,6 @@ public class UsuarioTeste
         
         // Assert
 
-        resultado.Should().Be("Usuário já existente.");
+        resultado.Should().Be("Matricula já existente.");
     }
 }
