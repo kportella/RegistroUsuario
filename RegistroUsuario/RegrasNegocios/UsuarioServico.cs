@@ -25,6 +25,14 @@ public class UsuarioServico : IUsuario
 
     public string CongelarUsuario(long matricula)
     {
-        return "";
+        var usuario = Utils.Instance.Usuarios.Find(usuario => usuario.Matricula == matricula);
+        
+        Utils.Instance.Usuarios.Remove(usuario);
+        
+        usuario.Congelado = true;
+        
+        Utils.Instance.Usuarios.Add(usuario);
+
+        return "Usuário congelado com sucesso!";
     }
 }
