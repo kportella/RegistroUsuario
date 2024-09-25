@@ -34,6 +34,11 @@ public class Usuario
 
     private static bool ValidarPreenchimento(Usuario usuario)
     {
+        if (string.IsNullOrEmpty(usuario.Nome)) return false;
+        if (string.IsNullOrEmpty(usuario.Senha)) return false;
+        if (string.IsNullOrEmpty(usuario.Email)) return false;
+        if (usuario.Matricula == 0) return false;
+
         return true;
     }
 }

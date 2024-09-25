@@ -40,8 +40,12 @@ public class UsuarioTeste
         resultado.Should().Be("Cadastrado com sucesso!");
     }
 
-    [Fact]
-    public void RegistrarUsuario_ComCamposObrigatoriosNaoPreenchidos_NaoDeveSalvar()
+    [Theory]
+    [InlineData("Guilherme", "123456", "email@email.com", 0)]
+    [InlineData("Guilherme", "123456", null, 123456)]
+    [InlineData("Guilherme", null, "email@email.com", 123456)]
+    [InlineData(null, "123456", "email@email.com", 123456)]
+    public void RegistrarUsuario_ComCamposObrigatoriosNaoPreenchidos_NaoDeveSalvar(string nome, string senha, string email, int matricula)
     {
         // Arrange
         
@@ -55,10 +59,10 @@ public class UsuarioTeste
         var cargo = Cargo.Criar("1", "Nome cargo");
         var departamento = Departamento.Criar("1", "Nome departamento");
 
-        var usuario = new Usuario(null
-            , 123456
-            , "123456"
-            , "email@email.com"
+        var usuario = new Usuario(nome
+            , matricula
+            , senha
+            , email
             , dataNascimento
             , certificados
             , cargo
@@ -72,7 +76,6 @@ public class UsuarioTeste
         // Assert
         
         retorno.Should().Be("Um ou mais campos obrigatórios não preenchidos");
-        
-        
+        Utils.Instance.Usuarios.Exists(x => x.Matricula == usuario.Matricula).Should().BeFalse();
     }
 }
