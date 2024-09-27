@@ -18,12 +18,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now;
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario("Guilherme"
             , 123456
@@ -57,12 +57,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now;
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario(nome
             , matricula
@@ -93,12 +93,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now;
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario("Guilherme"
             , 123456
@@ -131,12 +131,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now;
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario("Guilherme"
             , 123456
@@ -168,12 +168,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now.AddDays(1);
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario("Guilherme"
             , 123456
@@ -203,12 +203,12 @@ public class UsuarioTeste
         var dataNascimento = DateTime.Now.AddDays(-1);
         var certificados = new List<Certificado>()
         {
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
-            Certificado.Criar("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
+            new Certificado("1", 123456, DateTime.Now, 10),
         };
 
-        var cargo = Cargo.Criar("1", "Nome cargo");
-        var departamento = Departamento.Criar("1", "Nome departamento");
+        var cargo = new Cargo("1", "Nome cargo");
+        var departamento = new Departamento("1", "Nome departamento");
 
         var usuario = new Usuario("Guilherme"
             , 123456
