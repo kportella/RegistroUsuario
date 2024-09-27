@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Microsoft.Extensions.DependencyInjection;
+using RegistroUsuario;
 using RegistroUsuario.Dominio;
 using RegistroUsuario.RegrasNegocios;
 
@@ -80,6 +81,32 @@ switch (input)
         break;
     
     case "2":
+        Utils.Instance.Usuarios.ForEach(usuario =>
+        {
+            Console.WriteLine("\n---- Registro ----");
+            Console.WriteLine($"Nome: {usuario.Nome}");
+            Console.WriteLine($"Matrícula: {usuario.Matricula}");
+            Console.WriteLine($"Senha: {usuario.Senha}");
+            Console.WriteLine($"Email: {usuario.Email}");
+            Console.WriteLine($"Data de Nascimento: {usuario.DataNascimento.ToString("dd/MM/yyyy")}");
+
+            Console.WriteLine("\n---- Certificados ----");
+            foreach (var certificado in usuario.Certificados)
+            {
+                Console.WriteLine($"Título: {certificado.Titulo}");
+                Console.WriteLine($"Código: {certificado.Codigo}");
+                Console.WriteLine($"Data de Emissão: {certificado.DataEmissao.ToString("dd/MM/yyyy")}");
+                Console.WriteLine($"Carga Horária: {certificado.CargaHoraria}");
+            }
+            
+            Console.WriteLine("\n---- Cargo ----");
+            Console.WriteLine($"Cargo: {usuario.Cargo.Nome}");
+            Console.WriteLine($"Código do Cargo: {usuario.Cargo.Codigo}");
+            
+            Console.WriteLine("\n---- Departamento ----");
+            Console.WriteLine($"Departamento: {usuario.Departamento.Nome}");
+            Console.WriteLine($"Código do Departamento: {usuario.Departamento.Codigo}");
+        });
         
         break;
 }
