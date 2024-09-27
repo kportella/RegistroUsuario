@@ -162,6 +162,14 @@ switch (input)
         Utils.Instance.Usuarios.Remove(usuarioSelecionadoDelecao);
         
         break;
+    
+    case "6":
+        Console.WriteLine("Saindo...");
+        return;
+    
+    default:
+        Console.WriteLine("Comando desconhecido.");
+        break;
 }
 
 static string DisplayMenuWithSubmenu(string[] geralOpcoes, string[] registroOpcoes, string[] certificadosOpcoes, string[] cargoOpcoes, string[] departamentoOpcoes)
