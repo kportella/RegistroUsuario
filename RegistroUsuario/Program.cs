@@ -18,6 +18,12 @@ Console.WriteLine();
 
 var input = Console.ReadLine();
 
+string[] registroOpcoes = {"Nome", "Matricula", "Senha", "Email", "DataNascimento"};
+string[] certificadosOpcoes = {"Titulo", "Codigo", "Data Emissão", "Carga Horaria" };
+string[] cargoOpcoes = {"Nome", "Codigo"};
+string[] departamentoOpcoes = {"Nome", "Codigo"};
+string[] geralOpcoes = {"Registro", "Certificados", "Cargo", "Departamento"};
+
 var usuarioServico = new UsuarioServico();
 
 switch (input)
@@ -109,4 +115,139 @@ switch (input)
         });
         
         break;
+    
+    case "3":
+        Console.WriteLine("Digite a matricula do usuário:");
+        var matriculaUsuario = long.Parse(Console.ReadLine());
+
+        var usuarioSelecionado = Utils.Instance.Usuarios.Where(x => x.Matricula == matriculaUsuario).First();
+        
+        Console.WriteLine("\n---- Registro ----");
+        Console.WriteLine($"Nome: {usuarioSelecionado.Nome}");
+        Console.WriteLine($"Matrícula: {usuarioSelecionado.Matricula}");
+        Console.WriteLine($"Senha: {usuarioSelecionado.Senha}");
+        Console.WriteLine($"Email: {usuarioSelecionado.Email}");
+        Console.WriteLine($"Data de Nascimento: {usuarioSelecionado.DataNascimento.ToString("dd/MM/yyyy")}");
+
+        Console.WriteLine("\n---- Certificados ----");
+        foreach (var certificado in usuarioSelecionado.Certificados)
+        {
+            Console.WriteLine($"Título: {certificado.Titulo}");
+            Console.WriteLine($"Código: {certificado.Codigo}");
+            Console.WriteLine($"Data de Emissão: {certificado.DataEmissao.ToString("dd/MM/yyyy")}");
+            Console.WriteLine($"Carga Horária: {certificado.CargaHoraria}");
+        }
+            
+        Console.WriteLine("\n---- Cargo ----");
+        Console.WriteLine($"Cargo: {usuarioSelecionado.Cargo.Nome}");
+        Console.WriteLine($"Código do Cargo: {usuarioSelecionado.Cargo.Codigo}");
+            
+        Console.WriteLine("\n---- Departamento ----");
+        Console.WriteLine($"Departamento: {usuarioSelecionado.Departamento.Nome}");
+        Console.WriteLine($"Código do Departamento: {usuarioSelecionado.Departamento.Codigo}");
+        break;
+    
+    case "4":
+        int selectedIndex = 0;
+
+        string selectedOption = DisplayMenuWithSubmenu(geralOpcoes, registroOpcoes, certificadosOpcoes, cargoOpcoes, departamentoOpcoes);
+        
+        break;
+    
+    case "5":
+        Console.WriteLine("Digite a matricula do usuário:");
+        var matriculaUsuarioDelecao = long.Parse(Console.ReadLine());
+        
+        var usuarioSelecionadoDelecao = Utils.Instance.Usuarios.Where(x => x.Matricula == matriculaUsuarioDelecao).First();
+        Utils.Instance.Usuarios.Remove(usuarioSelecionadoDelecao);
+        
+        break;
 }
+
+static string DisplayMenuWithSubmenu(string[] geralOpcoes, string[] registroOpcoes, string[] certificadosOpcoes, string[] cargoOpcoes, string[] departamentoOpcoes)
+{
+    // Display the main menu
+    int selectedIndex = 0;
+    ConsoleKey keyPressed;
+
+    do
+    {
+        DisplayMenu(geralOpcoes, selectedIndex);
+        keyPressed = Console.ReadKey(true).Key;
+
+        // Navigate through the main menu
+        if (keyPressed == ConsoleKey.UpArrow)
+        {
+            selectedIndex = selectedIndex == 0 ? geralOpcoes.Length - 1 : selectedIndex - 1;
+        }
+        else if (keyPressed == ConsoleKey.DownArrow)
+        {
+            selectedIndex = selectedIndex == geralOpcoes.Length - 1 ? 0 : selectedIndex + 1;
+        }
+
+    } while (keyPressed != ConsoleKey.Enter); // Continue until Enter is pressed
+
+    // Based on the selected main option, display the corresponding submenu
+    switch (geralOpcoes[selectedIndex])
+    {
+        case "Registro":
+            return DisplaySubMenu("Registro", registroOpcoes);
+        case "Certificados":
+            return DisplaySubMenu("Certificados", certificadosOpcoes);
+        case "Cargo":
+            return DisplaySubMenu("Cargo", cargoOpcoes);
+        case "Departamento":
+            return DisplaySubMenu("Departamento", departamentoOpcoes);
+        default:
+            return "Invalid Selection";
+    }
+}
+
+static string DisplaySubMenu(string title, string[] options)
+{
+    int selectedIndex = 0;
+    ConsoleKey keyPressed;
+
+    do
+    {
+        Console.Clear(); // Clear console to display the submenu
+        Console.WriteLine($"-- {title} Menu --\n");
+        DisplayMenu(options, selectedIndex);
+        keyPressed = Console.ReadKey(true).Key;
+
+        // Navigate through the submenu
+        if (keyPressed == ConsoleKey.UpArrow)
+        {
+            selectedIndex = selectedIndex == 0 ? options.Length - 1 : selectedIndex - 1;
+        }
+        else if (keyPressed == ConsoleKey.DownArrow)
+        {
+            selectedIndex = selectedIndex == options.Length - 1 ? 0 : selectedIndex + 1;
+        }
+
+    } while (keyPressed != ConsoleKey.Enter); // Continue until Enter is pressed
+
+    return $"{title}: {options[selectedIndex]}";
+}
+
+static void DisplayMenu(string[] options, int selectedIndex)
+{
+    Console.Clear(); // Clear console to redraw the menu
+
+    for (int i = 0; i < options.Length; i++)
+    {
+        if (i == selectedIndex)
+        {
+            // Highlight the selected option
+            Console.BackgroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        Console.WriteLine(options[i]);
+
+        // Reset colors
+        Console.ResetColor();
+    }
+}
+
+
