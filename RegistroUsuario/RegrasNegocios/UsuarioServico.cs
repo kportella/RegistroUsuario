@@ -38,7 +38,7 @@ public class UsuarioServico : IUsuario
 
     private static bool ValidarIdade(DateTime dataNascimento)
     {
-        return dataNascimento.Year - DateTime.Now.Year > 18;
+        return DateTime.Now.Year - dataNascimento.Year > 18;
     }
 
     public string CongelarUsuario(long matricula)

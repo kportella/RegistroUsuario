@@ -15,7 +15,7 @@ public class UsuarioTeste
     {
         // Arrange
 
-        var dataNascimento = DateTime.Now;
+        var dataNascimento = DateTime.Now.AddYears(-20) ;
         var certificados = new List<Certificado>()
         {
             new Certificado("1", 123456, DateTime.Now, 10),
@@ -90,7 +90,7 @@ public class UsuarioTeste
     {
         // Arrange
         
-        var dataNascimento = DateTime.Now;
+        var dataNascimento = DateTime.Now.AddYears(-19);
         var certificados = new List<Certificado>()
         {
             new Certificado("1", 123456, DateTime.Now, 10),
@@ -128,7 +128,7 @@ public class UsuarioTeste
     {
         // Arrange
         
-        var dataNascimento = DateTime.Now;
+        var dataNascimento = DateTime.Now.AddYears(-19);
         var certificados = new List<Certificado>()
         {
             new Certificado("1", 123456, DateTime.Now, 10),
